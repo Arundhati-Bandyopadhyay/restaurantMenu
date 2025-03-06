@@ -42,7 +42,8 @@ function Menu() {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-  };
+  }; 
+  
 
   const filteredMenuItems = selectedCategory
     ? menuItems.find((item) => item.category === selectedCategory)
@@ -53,9 +54,7 @@ function Menu() {
      <nav className="bg-black shadow-md p-3 flex justify-between items-center">
   <div className="flex items-center">
     <div className="dropdown">
-      {/* <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-        <IoMdMenu color="white" />
-      </div> */}
+      {/*  */}
       {/* <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
