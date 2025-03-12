@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../input.css';
 import { IoMdMenu } from 'react-icons/io';
 import logo from '../assets/logo.png';
+import Cart from './Cart';
 
 const menuItems = [
   {
@@ -39,69 +40,58 @@ const menuItems = [
 
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-  }; 
-  
+  };
 
   const filteredMenuItems = selectedCategory
     ? menuItems.find((item) => item.category === selectedCategory)
     : menuItems;
 
+
+    const handleAddToCart = (item) => {
+      setCartItems((prevItems) => [...prevItems, item]);
+      console.log(cartItems);
+      
+    };
   return (
     <div className="min-h-screen bg-gray-100">
-     <nav className="bg-black shadow-md p-3 flex justify-between items-center">
-  <div className="flex items-center">
-    <div className="dropdown">
-      {/*  */}
-      {/* <ul
-        tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-      >
-        {menuItems.map((categoryItem, index) => (
-          <li key={index} onClick={() => handleCategoryClick(categoryItem.category)}>
-            <a>{categoryItem.category}</a>
-          </li>
-        ))}
-        <li onClick={() => setSelectedCategory(null)}>
-          <a>All Categories</a>
-        </li>
-      </ul> */}
-    </div>
-    <div className="ml-4">
-      <select
-        className="bg-black text-white p-2 rounded"
-        value={selectedCategory || 'all'}
-        onChange={(e) =>
-          e.target.value === 'all'
-            ? setSelectedCategory(null)
-            : setSelectedCategory(e.target.value)
-        }
-      >
-        <option value="all">All Categories</option>
-        {menuItems.map((categoryItem) => (
-          <option key={categoryItem.category} value={categoryItem.category}>
-            {categoryItem.category}
-          </option>
-        ))}
-      </select>
-    </div>
-  </div>
+      <nav className="bg-black shadow-md p-3 flex justify-between items-center">
+        <div className="flex items-center">
+          <div className="ml-4">
+            <select
+              className="bg-black text-white p-2 rounded"
+              value={selectedCategory || 'all'}
+              onChange={(e) =>
+                e.target.value === 'all'
+                  ? setSelectedCategory(null)
+                  : setSelectedCategory(e.target.value)
+              }
+            >
+              <option value="all">All Categories</option>
+              {menuItems.map((categoryItem) => (
+                <option key={categoryItem.category} value={categoryItem.category}>
+                  {categoryItem.category}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
- 
-  <div className="flex justify-center items-center transform -translate-x-2">
-  <img src={logo} alt="Logo" className="h-16" />
-</div>
+        <div className="flex justify-center items-center transform -translate-x-2">
+          <img src={logo} alt="Logo" className="h-16" />
+        </div>
 
-  <div>
-    <button className="text-white hover:text-gray-300 ml-4">Login</button>
-  </div>
-</nav>
+        <div>
+          <button className="text-white hover:text-gray-300 ml-4">Login</button>
+        </div>
+      </nav>
 
       <div className="p-4">
         <div>
-          <h1 className="text-2xl font-bold text-center mb-6 ml-8" >    Our Menus</h1>
+          <h1 className="text-2xl font-bold text-center mb-6 ml-8"> Our Menus</h1>
           {selectedCategory ? (
             filteredMenuItems && (
               <div key={filteredMenuItems.category} className="mb-8">
@@ -109,14 +99,20 @@ function Menu() {
                 {filteredMenuItems.items.map((item) => (
                   <div
                     key={item.name}
-                    className="bg-white rounded-lg p-4 mb-2 shadow-md"
+                    className="bg-white rounded-lg p-4 mb-2 shadow-md flex justify-between items-center"
                   >
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <h3 className="text-lg font-medium">{item.name}</h3>
-                        <p className="text-gray-600 text-sm">{item.description}</p>
-                      </div>
-                      <span className="font-semibold">{item.price}</span>
+                    <div>
+                      <h3 className="text-lg font-medium">{item.name}</h3>
+                      <p className="text-gray-600 text-sm">{item.description}</p>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="font-semibold mr-4">{item.price}</span>
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        Add to Cart
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -129,20 +125,29 @@ function Menu() {
                 {menus.items.map((item) => (
                   <div
                     key={item.name}
-                    className="bg-white rounded-lg p-4 mb-2 shadow-md"
+                    className="bg-white rounded-lg p-4 mb-2 shadow-md flex justify-between items-center"
                   >
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <h3 className="text-lg font-medium">{item.name}</h3>
-                        <p className="text-gray-600 text-sm">{item.description}</p>
-                      </div>
-                      <span className="font-semibold">{item.price}</span>
+                    <div>
+                      <h3 className="text-lg font-medium">{item.name}</h3>
+                      <p className="text-gray-600 text-sm">{item.description}</p>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="font-semibold mr-4">{item.price}</span>
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        Add to Cart
+                      </button>
                     </div>
                   </div>
                 ))}
               </div>
             ))
           )}
+        </div>
+        <div className="w-1/4 p-4 bg-gray-200 rounded-lg">
+         
         </div>
       </div>
     </div>
