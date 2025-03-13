@@ -1,7 +1,9 @@
 import React from 'react'
 import Item from "./Item";
 
-export default function Items({ selectedCategory, filteredMenuItems, menuItems }) {
+export default function Items({ selectedCategory, filteredMenuItems, menuItems,setCartItems,cartItems}) {
+
+    
     return (
         <div>
             <div className="p-4">
@@ -11,8 +13,8 @@ export default function Items({ selectedCategory, filteredMenuItems, menuItems }
                         Our Menus
                     </h1>
                     {selectedCategory
-                        ? filteredMenuItems && (
-                            <Item menu={filteredMenuItems}></Item>
+                        ?(
+                            <Item menu={filteredMenuItems} ></Item>
                         )
                         : menuItems.map((menus, idx) => (
                             <Item key={idx} menu={menus}></Item>

@@ -1,9 +1,12 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
+import React from "react";
+import { useEffect, useState } from "react";
 import logo from "/assets/logo.png";
 
-export default function Navbar({menuItems,selectedCategory,setSelectedCategory}) {
-
+export default function Navbar({
+  menuItems,
+  selectedCategory,
+  setSelectedCategory,
+}) {
   return (
     <>
       <nav className="bg-black shadow-md p-3 flex justify-between items-center">
@@ -40,5 +43,5 @@ export default function Navbar({menuItems,selectedCategory,setSelectedCategory})
         </div>
       </nav>
     </>
-  )
+  );
 }

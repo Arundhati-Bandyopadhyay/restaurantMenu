@@ -1,7 +1,30 @@
 import React from 'react'
+import { useState } from 'react';
+import Cart from '../cart/Cart';
+import { Router,Route,Routes } from 'react-router';
+import { Link } from 'react-router';
+
+
 
 export default function Item({menu}) {
-  return (
+  const [showCart, setShowCart] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  
+
+  
+
+  const handleAddToCart = (item) => {
+    setCartItems((prevItems) => [...prevItems, item]); 
+    // setShowCart(true);
+  };
+  const handleCart = () => {
+    //setShowCart(!showCart);
+   
+  };
+  console.log(cartItems);
+  return ( 
+ 
+
     <div>
       <div key={menu.category} className="mb-8">
         <h2 className="text-xl font-semibold mb-4">
@@ -30,6 +53,19 @@ export default function Item({menu}) {
           </div>
         ))}
       </div>
-    </div>
+      <Link
+      to={{
+        pathname: '/Cart',
+        state: { cartItems: cartItems },
+      }}
+      className="fixed bottom-4 right-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-md z-50"
+    >
+      My Cart ({cartItems.length})
+    </Link>
+         
+          
+      
+        </div>
+   
   )
 }

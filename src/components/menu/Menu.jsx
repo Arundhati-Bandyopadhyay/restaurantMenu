@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../navbar/Navbar";
 import Items from "./Items";
+import { Outlet } from "react-router-dom";
 
 const menuItems = [
   {
@@ -69,6 +70,7 @@ const menuItems = [
 ];
 
 function Menu() {
+  // const categories = menuItems.map(item => item.category);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [cartItems, setCartItems] = useState([]);
 
@@ -89,6 +91,7 @@ function Menu() {
     <div className="min-h-screen bg-gray-100">
       <Navbar menuItems={menuItems} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}></Navbar>
       <Items selectedCategory={selectedCategory} filteredMenuItems={filteredMenuItems} menuItems={menuItems}></Items>
+      <Outlet></Outlet>
     </div>
   );
 }
