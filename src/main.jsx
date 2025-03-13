@@ -8,19 +8,25 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Items from './components/menu/Items.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
-   
     children: [
       {
         path: '/',
-        element: <Menu/>
-      },
-      {
-        path: '/Cart',
-        element: <Cart></Cart>,
+        element: <Menu/>,
+        children: [
+          {
+            index: true, // Render Items when the parent route matches exactly
+            element: <Items />,
+          },
+          {
+            path: '/cart',
+            element: <Cart />,
+          },
+        ],
       },
     ]
   },
@@ -31,6 +37,3 @@ createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
   </StrictMode>,
 )
-
-// https://github.com/ProgrammingHero1/boi-poka-book-vibe/blob/main/src/main.jsx
-// https://reactrouter.com/6.30.0/routers/create-browser-router-- check this link 

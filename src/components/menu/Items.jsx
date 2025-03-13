@@ -1,9 +1,11 @@
 import React from 'react'
 import Item from "./Item";
+import { useOutletContext } from 'react-router-dom';
 
-export default function Items({ selectedCategory, filteredMenuItems, menuItems,setCartItems,cartItems}) {
+export default function Items() {
 
-    
+    const { selectedCategory, filteredMenuItems, menuItems, handleAddToCart } = useOutletContext();
+
     return (
         <div>
             <div className="p-4">

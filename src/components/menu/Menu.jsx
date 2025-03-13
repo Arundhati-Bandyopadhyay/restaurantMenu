@@ -70,7 +70,6 @@ const menuItems = [
 ];
 
 function Menu() {
-  // const categories = menuItems.map(item => item.category);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [cartItems, setCartItems] = useState([]);
 
@@ -85,13 +84,18 @@ function Menu() {
   const handleAddToCart = (item) => {
     setCartItems((prevItems) => [...prevItems, item]);
   };
-  console.log(cartItems);
+  console.log("filteredMenuItems",filteredMenuItems);
 
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar menuItems={menuItems} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}></Navbar>
-      <Items selectedCategory={selectedCategory} filteredMenuItems={filteredMenuItems} menuItems={menuItems}></Items>
-      <Outlet></Outlet>
+      <Outlet
+        context={{
+          selectedCategory,
+          filteredMenuItems,
+          menuItems
+        }}
+      />
     </div>
   );
 }
