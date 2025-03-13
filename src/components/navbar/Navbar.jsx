@@ -1,12 +1,14 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import logo from "/assets/logo.png";
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar({
   menuItems,
   selectedCategory,
   setSelectedCategory,
 }) {
+  const navigate = useNavigate();
+
   return (
     <>
       <nav className="bg-black shadow-md p-3 flex justify-between items-center">
@@ -34,7 +36,7 @@ export default function Navbar({
           </div>
         </div>
 
-        <div className="flex justify-center items-center transform -translate-x-2">
+        <div className="flex justify-center items-center transform -translate-x-2" onClick={() => navigate('/')}>
           <img src={logo} alt="Logo" className="h-16" />
         </div>
 

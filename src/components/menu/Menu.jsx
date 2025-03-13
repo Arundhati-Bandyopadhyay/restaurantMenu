@@ -7,16 +7,16 @@ const menuItems = [
   {
     category: "Appetizers",
     items: [
-      { name: "Crispy Fries", description: "Golden and crispy.", price: "₹99" },
+      { name: "Crispy Fries", description: "Golden and crispy.", price: "99" },
       {
         name: "Onion Rings",
         description: "Delicious fried rings.",
-        price: "₹129",
+        price: "129",
       },
       {
         name: "Chicken Wings",
         description: "Spicy and flavorful.",
-        price: "₹199",
+        price: "199",
       },
     ],
   },
@@ -26,17 +26,17 @@ const menuItems = [
       {
         name: "Burger Deluxe",
         description: "Juicy patty, fresh toppings.",
-        price: "₹249",
+        price: "249",
       },
       {
         name: "Pasta Alfredo",
         description: "Creamy pasta with chicken.",
-        price: "₹299",
+        price: "299",
       },
       {
         name: "Veggie Pizza",
         description: "Loaded with fresh veggies.",
-        price: "₹279",
+        price: "279",
       },
     ],
   },
@@ -46,12 +46,12 @@ const menuItems = [
       {
         name: "Chocolate Cake",
         description: "Rich and decadent.",
-        price: "₹149",
+        price: "149",
       },
       {
         name: "Ice Cream Scoop",
         description: "Various flavors available.",
-        price: "₹79",
+        price: "79",
       },
     ],
   },
@@ -61,10 +61,10 @@ const menuItems = [
       {
         name: "Soft Drinks",
         description: "Coke, Pepsi, Sprite.",
-        price: "₹49",
+        price: "49",
       },
-      { name: "Iced Tea", description: "Refreshing and cool.", price: "₹69" },
-      { name: "Coffee", description: "Hot or Iced", price: "₹89" },
+      { name: "Iced Tea", description: "Refreshing and cool.", price: "69" },
+      { name: "Coffee", description: "Hot or Iced", price: "89" },
     ],
   },
 ];
@@ -93,7 +93,9 @@ function Menu() {
         context={{
           selectedCategory,
           filteredMenuItems,
-          menuItems
+          menuItems,
+          cartItems,
+          setCartItems
         }}
       />
     </div>

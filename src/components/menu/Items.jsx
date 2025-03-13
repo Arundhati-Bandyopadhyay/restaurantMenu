@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 
 export default function Items() {
 
-    const { selectedCategory, filteredMenuItems, menuItems, handleAddToCart } = useOutletContext();
+    const { selectedCategory, filteredMenuItems, menuItems, handleAddToCart, cartItems, setCartItems } = useOutletContext();
 
     return (
         <div>
@@ -16,10 +16,10 @@ export default function Items() {
                     </h1>
                     {selectedCategory
                         ?(
-                            <Item menu={filteredMenuItems} ></Item>
+                            <Item menu={filteredMenuItems} cartItems={cartItems} setCartItems={setCartItems} ></Item>
                         )
                         : menuItems.map((menus, idx) => (
-                            <Item key={idx} menu={menus}></Item>
+                            <Item key={idx} menu={menus} cartItems={cartItems} setCartItems={setCartItems}></Item>
                         ))}
                 </div>
             </div>

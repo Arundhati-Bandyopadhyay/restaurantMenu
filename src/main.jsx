@@ -1,14 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import './input.css'
 import App from './App.jsx'
 import Menu from './components/menu/Menu.jsx'
-import Cart from './components/cart/Cart.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import Items from './components/menu/Items.jsx'
+import CartItems from './components/cart/CartItems.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/cart',
-            element: <Cart />,
+            element: <CartItems />,
           },
         ],
       },
