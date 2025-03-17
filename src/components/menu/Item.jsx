@@ -45,8 +45,7 @@ export default function Item({ menu, cartItems, setCartItems }) {
       </div>
       <Link
         to={{
-          pathname: '/Cart',
-          state: { cartItems: cartItems },
+          pathname: '/cart'
         }}
         className="fixed bottom-4 right-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-md z-50"
       >

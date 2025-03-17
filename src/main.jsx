@@ -2,7 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import './input.css'
-import App from './App.jsx'
 import Menu from './components/menu/Menu.jsx'
 import {
   createBrowserRouter,

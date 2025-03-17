@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 
 export default function Items() {
 
-    const { selectedCategory, filteredMenuItems, menuItems, handleAddToCart, cartItems, setCartItems } = useOutletContext();
+    const { selectedCategory, filteredMenuItems, menuItems, cartItems, setCartItems } = useOutletContext();
 
     return (
         <div>
