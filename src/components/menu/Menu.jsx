@@ -71,7 +71,13 @@ const menuItems = [
 
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState(null);
-const [cartItems, setCartItems] = useState([]);
+const [cartItems, setCartItems] = useState(()=> {
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      return JSON.parse(storedCartItems);
+    }
+    return [];
+  });
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);

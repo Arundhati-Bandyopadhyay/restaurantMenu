@@ -13,7 +13,7 @@ export default function Navbar({
     <>
       <nav className="bg-black shadow-md p-3 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="ml-4">
+          <div>
             <select
               className="bg-black text-white p-2 rounded"
               value={selectedCategory || "all"}

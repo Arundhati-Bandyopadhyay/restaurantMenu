@@ -4,23 +4,40 @@ import { useOutletContext } from 'react-router-dom';
 
 export default function CartItems() {
   const { cartItems, setCartItems } = useOutletContext();
-  const [finalCart, setFinalCart] = useState([]);
-  
-  // Calculate total price
-  const totalPrice = finalCart.reduce((sum, item) => {
-    return sum + (item.price * item.quantity);
-  }, 0);
 
-  console.log("CartItems", cartItems);
+  // Calculate total price directly from cartItems
+  const totalPrice = cartItems.reduce((sum, item) => {
+    if (item && item.price && item.quantity) {
+      return sum + (parseFloat(item.price.replace('₹', '')) * item.quantity);
+    }
+    return sum;
+  }, 0);
+  console.log("cartItems:::",cartItems);
+  console.log("totalPrice:::",totalPrice);
+
+  // Load cart items from local storage on mount, or use empty array as default
+  useEffect(() => {
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    } else {
+      setCartItems([]);
+    }
+  }, [setCartItems]);
+
+  // Save cart items to local storage whenever cartItems change
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <>
       <div>
         {cartItems.map((cartItem, idx) => (
-          <CartItem 
-            key={idx} 
-            cartItem={cartItem} 
-            setFinalCart={setFinalCart}
+          <CartItem
+            key={idx}
+            cartItem={cartItem}
+            setCartItems={setCartItems}
           />
         ))}
       </div>
@@ -33,5 +50,3 @@ export default function CartItems() {
     </>
   );
 }
-
-
