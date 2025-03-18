@@ -36,7 +36,7 @@ export default function Navbar({
           </div>
         </div>
 
-        <div className="flex justify-center items-center transform -translate-x-2" onClick={() => navigate('/')}>
+        <div className="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center" onClick={() => navigate('/')}>
           <img src={logo} alt="Logo" className="h-16" />
         </div>
 
