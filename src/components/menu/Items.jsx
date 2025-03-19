@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Item from "./Item";
 import { useOutletContext } from 'react-router-dom';
 
 export default function Items() {
 
     const { selectedCategory, filteredMenuItems, menuItems, cartItems, setCartItems } = useOutletContext();
+
+    // Save cart items to local storage whenever cartItems change
+      useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      }, [cartItems]);
 
     return (
         <div>
