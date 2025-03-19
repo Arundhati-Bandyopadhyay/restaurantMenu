@@ -5,7 +5,7 @@ export default function CartItem({ cartItem, setCartItems }) {
     name: cartItem.name,
     price: cartItem.price,
     description: cartItem.description,
-    quantity: 1,
+    quantity: 1
   });
 
   useEffect(() => {
