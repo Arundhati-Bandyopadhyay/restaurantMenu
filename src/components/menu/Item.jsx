@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 
 export default function Item({ menu, cartItems, setCartItems }) {
-  const [showCart, setShowCart] = useState(false);
 
   const handleAddToCart = (item) => {
     setCartItems((prevItems) => [...prevItems, item]);

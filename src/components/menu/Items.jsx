@@ -6,9 +6,29 @@ export default function Items() {
 
     const { selectedCategory, filteredMenuItems, menuItems, cartItems, setCartItems } = useOutletContext();
 
+    const updatedfilteredMenuItems = filteredMenuItems.map(category => ({
+        ...category,
+        items: category.items.map(item => ({
+          ...item,
+          quantity: 1,
+        })),
+      }));
+
+    const updatedMenuItems = menuItems.map(category => ({
+        ...category,
+        items: category.items.map(item => ({
+          ...item,
+          quantity: 1,
+        })),
+      }));
+
     // Save cart items to local storage whenever cartItems change
       useEffect(() => {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        const updatedCartItems = cartItems.map((item) => ({
+            ...item,
+            quantity: 1,
+          }));
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
       }, [cartItems]);
 
     return (
@@ -21,9 +41,9 @@ export default function Items() {
                     <div className="w-full max-w-6xl">
                         {selectedCategory
                             ? (
-                                <Item menu={filteredMenuItems} cartItems={cartItems} setCartItems={setCartItems}></Item>
+                                <Item menu={updatedfilteredMenuItems} cartItems={cartItems} setCartItems={setCartItems}></Item>
                             )
-                            : menuItems.map((menus, idx) => (
+                            : updatedMenuItems.map((menus, idx) => (
                                 <Item key={idx} menu={menus} cartItems={cartItems} setCartItems={setCartItems}></Item>
                             ))}
                     </div>
