@@ -38,15 +38,15 @@ export default function CartItem({ cartItem, setCartItems }) {
 
   const handleRemoveItem = () => {
     setCartItems((prevCartItems) =>
-      prevCartItems.filter((i) => i.name !== item.name)
+      prevCartItems.filter((i) => i.name !== cartItem.name)
     );
   };
 
   return (
     <div className="flex items-center p-4 border-b border-gray-200 hover:bg-gray-50 transition justify-between">
       <div className="flex-1">
-        <h3 className="font-medium text-gray-900">{item.name}</h3>
-        <p className="mt-1 text-sm text-gray-500 line-clamp-1">{item.description}</p>
+        <h3 className="font-medium text-gray-900">{cartItem.name}</h3>
+        <p className="mt-1 text-sm text-gray-500 line-clamp-1">{cartItem.description}</p>
       </div>
 
       <div className="flex items-center">
