@@ -5,13 +5,14 @@ export default function CartItem({ cartItem, setCartItems }) {
     name: cartItem.name,
     price: cartItem.price,
     description: cartItem.description,
-    quantity: 1
+    quantity: cartItem.quantity ? cartItem.quantity : 1
   });
 
   useEffect(() => {
     setCartItems((prevCartItems) => {
       const updatedItems = prevCartItems.map((cartItemInArray) => {
         if (cartItemInArray.name === item.name) {
+          console.log("Item name: ",item.name);
           return { ...item }; // Update with the entire item object
         }
         return cartItemInArray;
