@@ -9,27 +9,48 @@ import {
 } from "react-router-dom";
 import Items from './components/menu/Items.jsx'
 import CartItems from './components/cart/CartItems.jsx'
+import AuthPage from './components/Auth/AuthPage.jsx'
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    children: [
-      {
-        path: '/',
-        element: <Menu/>,
-        children: [
-          {
-            index: true, // Render Items when the parent route matches exactly
-            element: <Items />,
-          },
-          {
-            path: '/cart',
-            element: <CartItems />,
-          },
-        ],
-      },
-    ]
-  },
+  // {
+  //   path: "/",
+  //   children: [
+  //     {
+  //       path: '/',
+  //       element: <Menu/>,
+  //       children: [
+  //         {
+  //           index: true, // Render Items when the parent route matches exactly
+  //           element: <Items />,
+  //         },
+  //         {
+  //           path: '/menu/cart',
+  //           element: <CartItems />,
+  //         },
+  //       ],
+  //     },
+  //   ]
+  // },
+ 
+    {
+      path: "/",
+      element: <AuthPage />,
+    },
+    {
+      path: "/menu",
+      element: <Menu />,
+      children: [
+        {
+          index: true,
+          element: <Items />,
+        },
+        {
+          path: 'cart',
+          element: <CartItems />,
+        },
+      ],
+    },
+  
 ]);
 
 createRoot(document.getElementById('root')).render(

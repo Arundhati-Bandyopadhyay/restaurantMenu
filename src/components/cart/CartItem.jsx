@@ -12,8 +12,7 @@ export default function CartItem({ cartItem, setCartItems }) {
     setCartItems((prevCartItems) => {
       const updatedItems = prevCartItems.map((cartItemInArray) => {
         if (cartItemInArray.name === item.name) {
-          console.log("Item name: ",item.name);
-          return { ...item }; // Update with the entire item object
+          return { ...item };
         }
         return cartItemInArray;
       });
@@ -76,7 +75,7 @@ export default function CartItem({ cartItem, setCartItems }) {
       </div>
 
       <div className="pl-4 flex flex-col items-end">
-        <span className="font-medium text-gray-900">Rs. {(item.price * item.quantity).toFixed(2)}</span>
+        <span className="font-medium text-gray-900">Rs. {(parseFloat(item.price.replace('₹', '')) * item.quantity).toFixed(2)}</span>
         <button
           className="mt-1 text-sm text-red-500 hover:text-red-700"
           onClick={handleRemoveItem}

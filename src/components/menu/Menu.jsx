@@ -71,9 +71,6 @@ const menuItems = [
 
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  
-    const [addedItems, setAddedItems] = useState({});
-    const [autoAddItem, setAutoAddItem] = useState(false);
 const [cartItems, setCartItems] = useState(()=> {
     const storedCartItems = localStorage.getItem('cartItems');
     if (storedCartItems) {
@@ -104,8 +101,7 @@ const [cartItems, setCartItems] = useState(()=> {
           filteredMenuItems,
           menuItems,
           cartItems,
-          setCartItems,
-          
+          setCartItems
         }}
       />
     </div>

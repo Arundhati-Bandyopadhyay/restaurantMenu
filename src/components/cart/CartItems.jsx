@@ -5,17 +5,16 @@ import { useOutletContext } from 'react-router-dom';
 export default function CartItems() {
   const { cartItems, setCartItems } = useOutletContext();
 
-  // Calculate total price directly from cartItems
   const totalPrice = cartItems.reduce((sum, item) => {
     if (item && item.price && item.quantity) {
-      return sum + (parseFloat(item.price.replace('₹', '')) * item.quantity);
+      const price = parseFloat(item.price.replace('₹', ''));
+      if (!isNaN(price)) {
+        return sum + (price * item.quantity);
+      }
     }
     return sum;
   }, 0);
-  console.log("cartItems:::",cartItems);
-  console.log("totalPrice:::",totalPrice);
 
-  // Load cart items from local storage on mount, or use empty array as default
   useEffect(() => {
     const storedCartItems = localStorage.getItem('cartItems');
     if (storedCartItems) {
@@ -25,7 +24,6 @@ export default function CartItems() {
     }
   }, [setCartItems]);
 
-  // Save cart items to local storage whenever cartItems change
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);

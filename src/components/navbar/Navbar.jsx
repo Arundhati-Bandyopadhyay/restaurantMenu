@@ -1,6 +1,11 @@
 import React from "react";
 import logo from "/assets/logo.png";
 import { useNavigate } from 'react-router-dom';
+import { signOut } from "firebase/auth";
+import { useState } from "react";
+import { auth } from "../../firebase.init";
+
+
 
 export default function Navbar({
   menuItems,
@@ -8,6 +13,19 @@ export default function Navbar({
   setSelectedCategory,
 }) {
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
+  const handleSignOut = async () => {
+    try {
+      setError(null);
+      await signOut(auth);
+      console.log('User signed out');
+      navigate('/'); 
+    } catch (error) {
+      setError(error.message);
+      console.error('Sign out error:', error);
+    }
+  };
 
   return (
     <>
@@ -36,12 +54,17 @@ export default function Navbar({
           </div>
         </div>
 
-        <div className="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center" onClick={() => navigate('/')}>
+        <div className="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center" onClick={() => navigate('/menu')}>
           <img src={logo} alt="Logo" className="h-16" />
         </div>
 
         <div>
-          <button className="text-white hover:text-gray-300 ml-4">Login</button>
+        <button
+                 onClick={handleSignOut}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mb-2"
+              >
+                Sign Out
+              </button>
         </div>
       </nav>
     </>
