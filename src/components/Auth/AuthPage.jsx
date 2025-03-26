@@ -45,36 +45,68 @@ function AuthPage() {
     }
   };
 
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     setError(null);
+  //     const result = await signInWithPopup(auth, googleProvider);
+  //     const credential = GoogleAuthProvider.credentialFromResult(result);
+  //     const token = credential.accessToken;
+  //     const user = result.user;
+      
+  //     setUser(user);
+  //     console.log('Google user signed in:', user);
+  //     navigate('/menu');
+  //   } catch (error) {
+  //     // Handle Errors here.
+  //     const errorCode = error.code;
+  //     const errorMessage = error.message;
+  //     // The email of the user's account used.
+  //     const email = error.customData?.email;
+  //     // The AuthCredential type that was used.
+  //     const credential = GoogleAuthProvider.credentialFromError(error);
+      
+  //     setError(errorMessage);
+  //     console.error('Google Sign-In error:', {
+  //       errorCode,
+  //       errorMessage,
+  //       email,
+  //       credential
+  //     });
+  //   }
+  // };
   const handleGoogleSignIn = async () => {
     try {
       setError(null);
       const result = await signInWithPopup(auth, googleProvider);
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
       const user = result.user;
       
       setUser(user);
       console.log('Google user signed in:', user);
       navigate('/menu');
     } catch (error) {
-      // Handle Errors here.
+      // More detailed error handling
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData?.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
       
-      setError(errorMessage);
+      // Specific error messages for better debugging
+      switch(errorCode) {
+        case 'auth/popup-blocked':
+          setError('Google Sign-In popup was blocked. Please allow popups.');
+          break;
+        case 'auth/popup-closed-by-user':
+          setError('Google Sign-In was cancelled.');
+          break;
+        default:
+          setError(`Google Sign-In failed: ${errorMessage}`);
+      }
+      
       console.error('Google Sign-In error:', {
         errorCode,
         errorMessage,
-        email,
-        credential
+        email: error.customData?.email
       });
     }
   };
-
   const handleSignOut = async () => {
     try {
       setError(null);
